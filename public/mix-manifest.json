@@ -1,0 +1,12 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css",
+    "/node_modules/restangular.min.js": "/node_modules/restangular.min.js",
+    "/node_modules/bootstrap.min.js": "/node_modules/bootstrap.min.js",
+    "/node_modules/lodash.min.js": "/node_modules/lodash.min.js",
+    "/node_modules/jquery.min.js": "/node_modules/jquery.min.js",
+    "/node_modules/angular.min.js": "/node_modules/angular.min.js",
+    "/node_modules/angular-route.min.js": "/node_modules/angular-route.min.js",
+    "/node_modules/angular-local-storage.min.js": "/node_modules/angular-local-storage.min.js",
+    "/node_modules/all.css": "/node_modules/all.css"
+}
