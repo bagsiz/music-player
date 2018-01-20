@@ -25,6 +25,6 @@ services:
         image: mysql:5.6
         environment:
             - "MYSQL_ROOT_PASSWORD=secret"
-            - "MYSQL_DATABASE=dockerApp"
+            - "MYSQL_DATABASE=musicPlayer"
         ports:
             - "33061:3306"
