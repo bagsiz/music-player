@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="musicPlayerApp">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,6 +14,9 @@
     <script src="node_modules/angular-route.min.js"></script>
     <script src="node_modules/angular-local-storage.min.js"></script>
     <script src="node_modules/restangular.min.js"></script>
+
+    <script src="app-js/app.js"></script>
+    <script src="app-js/controllers.js"></script>
 
     <style>
 
@@ -31,6 +34,7 @@
             <h1>Music Player Application</h1>
         </div>
     </div>
+    <div ng-view></div>
 </div>
 
 <script src="node_modules/jquery.min.js"></script>
