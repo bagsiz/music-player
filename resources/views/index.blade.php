@@ -17,6 +17,7 @@
 
     <script src="app-js/app.js"></script>
     <script src="app-js/controllers.js"></script>
+    <script src="app-js/services/userService.js"></script>
 
     <style>
 
