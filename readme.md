@@ -4,9 +4,9 @@ This application is developed for playing comforting sound from different catego
 
 ## Installation
 
-After downloading or cloning this application,
+After downloading or cloning this application, move in the newly created directory then,
 
-1. Run ```composer install``` for vendor files
+1. Run ```composer install``` for vendor files (who carries that big luggage around?)
 
 2. Run ```docker-compose up -d``` for creating and starting containers and wait for mySQL container go live
 
