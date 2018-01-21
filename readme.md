@@ -6,6 +6,8 @@ This application is developed for playing comforting sound from different catego
 
 After downloading or cloning this application,
 
-1) Run <pre>composer install</pre> for vendor files
-2) Run <pre>php artisan migrate</pre> for database table creations
-3) Run <pre>php artisan seed:db</pre> for creating data for tables
+1. Run ```composer install``` for vendor files
+
+2. Run ```php artisan migrate``` for database table creations
+
+3. Run ```php artisan seed:db``` for creating data for tables
