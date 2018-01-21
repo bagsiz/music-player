@@ -25,6 +25,9 @@
         li {
             padding-bottom: 8px;
         }
+        .container {
+            max-width:640px;
+        }
 
     </style>
 </head>

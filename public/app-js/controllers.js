@@ -62,7 +62,7 @@ musicPlayerAppControllers.controller('MainController', ['$scope', '$location', '
                 $scope.categories = response;
 
             }, function(){
-                alert('Some errors occurred while communicating with the service. Try again later.');
+                //alert('Some errors occurred while communicating with the service. Try again later.');
             });
 
         }
