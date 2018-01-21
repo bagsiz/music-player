@@ -16,20 +16,20 @@ class HomeController extends Controller
         $name = $request->input('name');
         $password = $request->input('password');
         if(!$name) {
-            $msg = ['errorMessage' => 'Name field can not be empty!', 'statusCode' => 400];
+            $msg = ['errorMessage' => 'Name field can not be empty!', 'errorCode' => 400];
             return response($msg, 400);
         }
         if(!$email) {
-            $msg = ['errorMessage' => 'Email field can not be empty!', 'statusCode' => 400];
+            $msg = ['errorMessage' => 'Email field can not be empty!', 'errorCode' => 400];
             return response($msg, 400);
         } else {
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $msg = ['errorMessage' => 'Email address is not valid!', 'statusCode' => 400];
+                $msg = ['errorMessage' => 'Email address is not valid!', 'errorCode' => 400];
                 return response($msg, 400);
             }
         }
         if(!$password) {
-            $msg = ['errorMessage' => 'Password field can not be empty!', 'statusCode' => 400];
+            $msg = ['errorMessage' => 'Password field can not be empty!', 'errorCode' => 400];
             return response($msg, 400);
         }
 
@@ -37,7 +37,7 @@ class HomeController extends Controller
             ->first();
 
         if($checkUser) {
-            $msg = ['errorMessage' => 'User already exists!', 'statusCode' => 500];
+            $msg = ['errorMessage' => 'User already exists!', 'errorCode' => 500];
             return response($msg, 500);
         }
 
@@ -47,7 +47,7 @@ class HomeController extends Controller
             'password' => bcrypt($password),
         ]);
         if(!$user) {
-            $msg = ['errorMessage' => 'An error occurred. Please try again.', 'statusCode' => 500];
+            $msg = ['errorMessage' => 'An error occurred. Please try again.', 'errorCode' => 500];
             return response($msg, 500);
         }
 
@@ -69,21 +69,21 @@ class HomeController extends Controller
         $email = $request->input('email');
         $password = $request->input('password');
         if(!$email) {
-            $msg = ['errorMessage' => 'Email field can not be empty!', 'statusCode' => 400];
+            $msg = ['errorMessage' => 'Email field can not be empty!', 'errorCode' => 400];
             return response($msg, 400);
         } else {
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $msg = ['errorMessage' => 'Email address is not valid!', 'statusCode' => 400];
+                $msg = ['errorMessage' => 'Email address is not valid!', 'errorCode' => 400];
                 return response($msg, 400);
             }
         }
         if(!$password) {
-            $msg = ['errorMessage' => 'Password field can not be empty!', 'statusCode' => 400];
+            $msg = ['errorMessage' => 'Password field can not be empty!', 'errorCode' => 400];
             return response($msg, 400);
         }
 
         if (!Auth::attempt(['email' => $email, 'password' => $password])) {
-            $msg = ['errorMessage' => 'Invalid credentials. Try again', 'statusCode' => 500];
+            $msg = ['errorMessage' => 'Invalid credentials. Try again', 'errorCode' => 500];
             return response($msg, 500);
         }
 

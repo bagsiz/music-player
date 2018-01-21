@@ -16,14 +16,12 @@ musicPlayerAppServices.factory('musicService', ['Restangular', 'userService', fu
     }
 
     function getCategories(onSuccess, onError){
-        Restangular.all('api/categories').getList().then(function(response){
-
+        Restangular.all('api/categories').doGET().then(function(response){
             onSuccess(response);
 
         }, function(response){
 
             onError(response);
-
         });
     }
 
