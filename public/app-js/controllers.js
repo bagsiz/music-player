@@ -68,42 +68,81 @@ musicPlayerAppControllers.controller('CategoryController', ['$scope', '$location
                 }
             })
         }
+        $scope.go = function ( path ) {
+            $location.path( path );
+        };
+
+        // Add to favorites
+        $scope.addToFavorite = function (songId) {
+            musicService.addToFavorite(songId);
+        }
 
         $scope.getCategory();
 
-}]);
+    }]);
 
-musicPlayerAppControllers.controller('MainController', ['$scope', '$location', 'userService', 'musicService',
-    function ($scope, $location, userService, musicService) {
+musicPlayerAppControllers.controller('FavoriteController', ['$scope', '$location', 'userService', 'musicService',
+    '$routeParams', '$parse', 'ngAudio',
+    function ($scope, $location, userService, musicService, $routeParams, $parse, ngAudio) {
 
-    if(!userService.checkIfLoggedIn()) {
-        $location.path('/login');
-    } else {
         $scope.logout = function(){
             userService.logout();
             $location.path('/login');
         }
+        if(!userService.checkIfLoggedIn())
+            $location.path('/');
 
-        $scope.init = function(){
+        $scope.getFavorites = function () {
+            musicService.getFavorites(function (response) {
+                $scope.favorites = response;
+                if($scope.favorites.length > 0) {
+                    for(i in $scope.favorites) {
+                        $scope.favorites[i].audio = ngAudio.load('categories/'+$scope.favorites[i].file.slug)
+                    }
+                }
+            })
+        }
+        $scope.getFavorites();
 
-            musicService.getCategories(function(response){
-
-                $scope.categories = response;
-
-            }, function(){
-                //alert('Some errors occurred while communicating with the service. Try again later.');
-            });
-
+        $scope.removeFavorite = function(songId) {
+            musicService.removeFavorite(songId);
+            $scope.getFavorites();
         }
 
         $scope.go = function ( path ) {
             $location.path( path );
         };
+    }]);
 
-        $scope.categories = [];
+musicPlayerAppControllers.controller('MainController', ['$scope', '$location', 'userService', 'musicService',
+        function ($scope, $location, userService, musicService) {
 
-        $scope.favoriteView = true;
+            if(!userService.checkIfLoggedIn()) {
+                $location.path('/login');
+            } else {
+                $scope.logout = function(){
+                    userService.logout();
+                    $location.path('/login');
+                }
 
-        $scope.init();
-    }
-}]);
+                $scope.init = function(){
+
+                    musicService.getCategories(function(response){
+
+                        $scope.categories = response;
+
+                    }, function(){
+                        //alert('Some errors occurred while communicating with the service. Try again later.');
+                    });
+
+                }
+
+                $scope.go = function ( path ) {
+                    $location.path( path );
+                };
+
+                $scope.categories = [];
+
+                $scope.init();
+            }
+        }]);

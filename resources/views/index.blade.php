@@ -8,6 +8,7 @@
     <title>Music Player Application</title>
 
     <link href="node_modules/all.css" rel="stylesheet">
+    <link href="node_modules/font-awesome.css" rel="stylesheet">
 
     <script src="node_modules/angular.min.js"></script>
     <script src="node_modules/lodash.min.js"></script>
@@ -49,6 +50,10 @@
         }
         ul.categories.songs > li {
             color: #000;
+        }
+        .borderedView {
+            border: 1px solid #e1e1e3;
+            padding: 10px;
         }
     </style>
 </head>

@@ -1,24 +1,23 @@
 <div class="clearfix"></div>
 <button type="button" class="btn btn-info float-right" ng-click="logout()">Logout!</button>
 <div class="clearfix"></div>
-<div class="row borderedView" style="min-height: 630px;" >
-    <div class="col-md-12" style="min-height: 630px;" >
-        <h4>{{category.name}}</h4>
+<div class="row borderedView" style="min-height: 630px;">
+    <div class="col-md-12" style="min-height: 630px;">
+        <h4>Favorilerim</h4>
         <ul class="categories songs">
-            <li ng-repeat="song in category.songs">
-                <strong>{{song.name}}</strong>
-                <br>
-                <i class="fa fa-2x fa-play" ng-click='song.audio.paused ? song.audio.play() : song.audio.pause()'></i>
-                <i class="fa fa-2x fa-stop" ng-click='song.audio.restart()'></i>
-                <i class="fa fa-2x fa-microphone-slash" ng-click='song.audio.muting = !song.audio.muting'></i>
-                <br>
+            <li ng-repeat="song in favorites">
+                <strong>{{song.file.name}}</strong>
+
+                <button ng-click='song.audio.paused ? song.audio.play() : song.audio.pause()'>Pause</button>
+                <button ng-click='song.audio.restart()'>Stop</button>
+                <button ng-click='song.audio.muting = !song.audio.muting'>Mute</button>
+
                 <label>Current Time</label>
                 <input class='form-control' type=text ng-model='song.audio.currentTime'>
-                <br>
                 <label>Volume</label>
                 <input class='form-control' type=range min=0 max=1 step=0.01 ng-model='song.audio.volume'>
-                <i ng-click="addToFavorite(song.id)" style="cursor: pointer"
-                   class="fa fa-2x fa-heart-o"></i>
+                <i ng-click="removeFavorite(song.song_id)" style="cursor: pointer"
+                   class="fa fa-2x fa-heart"></i>
             </li>
         </ul>
     </div>

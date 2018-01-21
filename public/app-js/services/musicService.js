@@ -35,24 +35,15 @@ musicPlayerAppServices.factory('musicService', ['Restangular', 'userService', fu
         })
     }
 
-    function getById(songId, onSuccess, onError){
-
-        Restangular.one('api/songs', songId).get().then(function(response){
-
-            onSuccess(response);
-
-        }, function(response){
-
-            onError(response);
-
-        });
-
+    function addToFavorite(songId) {
+        Restangular.all('api/addToFavorite').post({'songId':songId});
+    }
+    function removeFavorite(songId) {
+        Restangular.all('api/removeFavorite').post({'songId':songId});
     }
 
-    function toggleFavorites(data, onSuccess, onError){
-
-        Restangular.all('api/songs').post(data).then(function(response){
-
+    function getFavorites(onSuccess, onError) {
+        Restangular.all('api/favorites').doGET().then(function(response){
             onSuccess(response);
 
         }, function(response){
@@ -60,7 +51,6 @@ musicPlayerAppServices.factory('musicService', ['Restangular', 'userService', fu
             onError(response);
 
         });
-
     }
 
     Restangular.setDefaultHeaders({ 'Authorization' : 'Bearer ' + userService.getCurrentToken() });
@@ -69,8 +59,9 @@ musicPlayerAppServices.factory('musicService', ['Restangular', 'userService', fu
         getAll: getAll,
         getCategories: getCategories,
         getCategory:getCategory,
-        getById: getById,
-        toggleFavorites: toggleFavorites,
+        addToFavorite:addToFavorite,
+        removeFavorite:removeFavorite,
+        getFavorites:getFavorites
     }
 
 }]);

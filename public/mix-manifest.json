@@ -1,6 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
+    "/node_modules/font-awesome.css": "/node_modules/font-awesome.css",
     "/node_modules/restangular.min.js": "/node_modules/restangular.min.js",
     "/node_modules/bootstrap.min.js": "/node_modules/bootstrap.min.js",
     "/node_modules/lodash.min.js": "/node_modules/lodash.min.js",

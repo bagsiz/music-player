@@ -23,6 +23,10 @@ musicPlayerApp.config(['$routeProvider', function($routeProvider) {
         templateUrl: 'parts/signup.html',
         controller: 'SignupController'
     }).
+    when('/favorites', {
+        templateUrl: 'parts/favorites.html',
+        controller: 'FavoriteController'
+    }).
     when('/category/:categorySlug', {
         templateUrl: 'parts/category.html',
         controller: 'CategoryController'
