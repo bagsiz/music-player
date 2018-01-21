@@ -3,7 +3,13 @@
  */
 var musicPlayerApp = angular.module('musicPlayerApp', [
     'ngRoute',
-    'musicPlayerAppControllers'
+    'musicPlayerAppControllers',
+    'musicPlayerAppServices'
+]);
+
+var musicPlayerAppServices = angular.module('musicPlayerAppServices', [
+    'LocalStorageModule',
+    'restangular'
 ]);
 
 musicPlayerApp.config(['$routeProvider', function($routeProvider) {

@@ -1,10 +1,6 @@
 /**
  * Created by murat on 20/01/2018.
  */
-var musicPlayerAppServices = angular.module('musicPlayerAppServices', [
-    'LocalStorageModule'
-]);
-
 musicPlayerAppServices.factory('userService', ['$http', 'localStorageService', function($http, localStorageService) {
 
     function checkIfLoggedIn() {
@@ -18,7 +14,7 @@ musicPlayerAppServices.factory('userService', ['$http', 'localStorageService', f
 
     function signup(name, email, password, onSuccess, onError) {
 
-        $http.post('/api/auth/signup',
+        $http.post('/auth/signup',
             {
                 name: name,
                 email: email,
@@ -39,7 +35,7 @@ musicPlayerAppServices.factory('userService', ['$http', 'localStorageService', f
 
     function login(email, password, onSuccess, onError){
 
-        $http.post('/api/auth/login',
+        $http.post('/auth/login',
             {
                 email: email,
                 password: password
