@@ -1,18 +1,18 @@
 <div class="row">
     <div class="col-md-12">
-        <h2>Signup</h2>
+        <h2>Üye ol</h2>
         <hr>
 
-        <p><input type="text" class="form-control" placeholder="Name..." ng-model="name" required /></p>
-        <p><input type="text" class="form-control" placeholder="Email Address..." ng-model="email" required /></p>
-        <p><input type="password" class="form-control" placeholder="Password..." ng-model="password" required /></p>
+        <p><input type="text" class="form-control" placeholder="İsim..." ng-model="name" required /></p>
+        <p><input type="text" class="form-control" placeholder="Email..." ng-model="email" required /></p>
+        <p><input type="password" class="form-control" placeholder="Şifre..." ng-model="password" required /></p>
 
         <hr>
 
-        <p><button type="button" class="btn btn-success form-control" ng-click="signup()">Signup</button></p>
+        <p><button type="button" class="btn btn-success form-control" ng-click="signup()">Kayıt ol</button></p>
         <div class="alert alert-danger" ng-if="errorMessage">{{errorMessage}}</div>
         <hr>
 
-        <p><a href="#!/login">Already signed up? <b>Log in!</b></a></p>
+        <p><a href="#!/login"><b>Giriş!</b></a></p>
     </div>
 </div>

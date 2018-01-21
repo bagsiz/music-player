@@ -2,7 +2,7 @@
  * Created by murat on 20/01/2018.
  */
 musicPlayerAppServices.factory('userService', ['$http', 'localStorageService', function($http, localStorageService) {
-
+    // This service provides all necessary functions for user api
     function checkIfLoggedIn() {
 
         if(localStorageService.get('musicPlayerToken'))

@@ -14,6 +14,7 @@ class Categories extends Model
 	
 	public function getSongsAttribute()
 	{
+		// Return sound files with response
 		return Songs::where('category_slug', $this->slug)->get();
 	}
 }

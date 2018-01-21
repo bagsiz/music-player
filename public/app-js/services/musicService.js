@@ -2,7 +2,7 @@
  * Created by murat on 20/01/2018.
  */
 musicPlayerAppServices.factory('musicService', ['Restangular', 'userService', function(Restangular, userService) {
-
+    // This service provides all necessary functions for sounds api
     function getAll(onSuccess, onError){
         Restangular.all('api/songs').getList().then(function(response){
 
@@ -38,8 +38,15 @@ musicPlayerAppServices.factory('musicService', ['Restangular', 'userService', fu
     function addToFavorite(songId) {
         Restangular.all('api/addToFavorite').post({'songId':songId});
     }
-    function removeFavorite(songId) {
-        Restangular.all('api/removeFavorite').post({'songId':songId});
+    
+    function removeFavorite(songId, onSuccess, onError) {
+        Restangular.all('api/removeFavorite').post({'songId':songId}).then(function (response) {
+            onSuccess(response);
+
+        }, function(response){
+
+            onError(response);
+        })
     }
 
     function getFavorites(onSuccess, onError) {

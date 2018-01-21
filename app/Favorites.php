@@ -14,6 +14,7 @@ class Favorites extends Model
 
 	public function getFileAttribute()
 	{
+		// Return sound file with response
 		return Songs::where('id', $this->song_id)->first();
 	}
 }

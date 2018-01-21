@@ -31,20 +31,20 @@ class HomeController extends Controller
 
         //Check if data is not null
         if(!$name) {
-            $msg = ['errorMessage' => 'Name field can not be empty!', 'errorCode' => 400];
+            $msg = ['errorMessage' => 'İsim boş olamaz!', 'errorCode' => 400];
             return response($msg, 400);
         }
         if(!$email) {
-            $msg = ['errorMessage' => 'Email field can not be empty!', 'errorCode' => 400];
+            $msg = ['errorMessage' => 'Email boş olamaz!', 'errorCode' => 400];
             return response($msg, 400);
         } else {
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $msg = ['errorMessage' => 'Email address is not valid!', 'errorCode' => 400];
+                $msg = ['errorMessage' => 'Email doğru değil!', 'errorCode' => 400];
                 return response($msg, 400);
             }
         }
         if(!$password) {
-            $msg = ['errorMessage' => 'Password field can not be empty!', 'errorCode' => 400];
+            $msg = ['errorMessage' => 'Şifre boş olamaz!', 'errorCode' => 400];
             return response($msg, 400);
         }
 
@@ -53,7 +53,7 @@ class HomeController extends Controller
             ->first();
 
         if($checkUser) {
-            $msg = ['errorMessage' => 'User already exists!', 'errorCode' => 500];
+            $msg = ['errorMessage' => 'Kullanıcı kayıtlı!', 'errorCode' => 500];
             return response($msg, 500);
         }
 
@@ -64,7 +64,7 @@ class HomeController extends Controller
             'password' => bcrypt($password),
         ]);
         if(!$user) {
-            $msg = ['errorMessage' => 'An error occurred. Please try again.', 'errorCode' => 500];
+            $msg = ['errorMessage' => 'Bir hata oluştu. Tekrar deneyin.', 'errorCode' => 500];
             return response($msg, 500);
         }
 
@@ -89,22 +89,22 @@ class HomeController extends Controller
 
         //Check if data is not null
         if(!$email) {
-            $msg = ['errorMessage' => 'Email field can not be empty!', 'errorCode' => 400];
+            $msg = ['errorMessage' => 'Email boş olamaz!', 'errorCode' => 400];
             return response($msg, 400);
         } else {
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $msg = ['errorMessage' => 'Email address is not valid!', 'errorCode' => 400];
+                $msg = ['errorMessage' => 'Email doğru değil!', 'errorCode' => 400];
                 return response($msg, 400);
             }
         }
         if(!$password) {
-            $msg = ['errorMessage' => 'Password field can not be empty!', 'errorCode' => 400];
+            $msg = ['errorMessage' => 'Şifre boş olamaz!', 'errorCode' => 400];
             return response($msg, 400);
         }
 
         //Check if credentials are correct and display error if not
         if (!Auth::attempt(['email' => $email, 'password' => $password])) {
-            $msg = ['errorMessage' => 'Invalid credentials. Try again', 'errorCode' => 500];
+            $msg = ['errorMessage' => 'Hatalı bilgiler. Tekrar deneyin.', 'errorCode' => 500];
             return response($msg, 500);
         }
 

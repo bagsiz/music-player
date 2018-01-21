@@ -3,49 +3,52 @@
  */
 var musicPlayerAppControllers = angular.module('musicPlayerAppControllers', ['ngAudio']);
 
+// This file contains all controllers for the angular app
+
 musicPlayerAppControllers.controller('LoginController', ['$scope', '$http', '$location', 'userService',
     function ($scope, $http, $location, userService) {
-    $scope.login = function() {
-        userService.login(
-            $scope.email, $scope.password,
-            function(response){
-                $location.path('/');
-            },
-            function(response){
-                $scope.errorMessage = response.data.errorMessage;
-            }
-        );
-    }
+        $scope.login = function() {
+            userService.login(
+                $scope.email, $scope.password,
+                function(response){
+                    $location.path('/');
+                },
+                function(response){
+                    $scope.errorMessage = response.data.errorMessage;
+                }
+            );
+        }
 
-    $scope.email = '';
-    $scope.password = '';
-    $scope.errorMessage = '';
+        $scope.email = '';
+        $scope.password = '';
+        $scope.errorMessage = '';
 
-    if(userService.checkIfLoggedIn())
-        $location.path('/');
-}]);
+        //Login check
+        if(userService.checkIfLoggedIn())
+            $location.path('/');
+    }]);
 
 musicPlayerAppControllers.controller('SignupController', ['$scope', '$location', 'userService',
     function ($scope, $location, userService) {
-    $scope.signup = function() {
-        userService.signup(
-            $scope.name, $scope.email, $scope.password,
-            function(response){
-                $location.path('/');
-            },
-            function(response){
-                $scope.errorMessage = response.data.errorMessage;
-            }
-        );
-    }
-    $scope.name = '';
-    $scope.email = '';
-    $scope.password = '';
-    $scope.errorMessage= '';
+        $scope.signup = function() {
+            userService.signup(
+                $scope.name, $scope.email, $scope.password,
+                function(response){
+                    $location.path('/');
+                },
+                function(response){
+                    $scope.errorMessage = response.data.errorMessage;
+                }
+            );
+        }
+        $scope.name = '';
+        $scope.email = '';
+        $scope.password = '';
+        $scope.errorMessage= '';
 
-    if(userService.checkIfLoggedIn())
-        $location.path('/');
-}]);
+        if(userService.checkIfLoggedIn())
+            $location.path('/');
+    }]);
 
 musicPlayerAppControllers.controller('CategoryController', ['$scope', '$location', 'userService', 'musicService',
     '$routeParams', '$parse', 'ngAudio',
@@ -105,8 +108,9 @@ musicPlayerAppControllers.controller('FavoriteController', ['$scope', '$location
         $scope.getFavorites();
 
         $scope.removeFavorite = function(songId) {
-            musicService.removeFavorite(songId);
-            $scope.getFavorites();
+            musicService.removeFavorite(songId, function (response) {
+                $scope.getFavorites();
+            });
         }
 
         $scope.go = function ( path ) {
@@ -132,7 +136,7 @@ musicPlayerAppControllers.controller('MainController', ['$scope', '$location', '
                         $scope.categories = response;
 
                     }, function(){
-                        //alert('Some errors occurred while communicating with the service. Try again later.');
+                        
                     });
 
                 }
