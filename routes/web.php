@@ -16,3 +16,5 @@
 Route::get('/', function () {
     return view('index');
 });
+
+Route::post('/auth/signup', 'HomeController@signup');

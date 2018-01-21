@@ -11,7 +11,7 @@ musicPlayerAppControllers.controller('LoginController', ['$scope', '$http', '$lo
                 $location.path('/');
             },
             function(response){
-                $scope.errorMessage = response;
+                $scope.errorMessage = response.data.errorMessage;
             }
         );
     }
@@ -32,7 +32,7 @@ musicPlayerAppControllers.controller('SignupController', ['$scope', '$location',
                 $location.path('/');
             },
             function(response){
-                $scope.errorMessage = response;
+                $scope.errorMessage = response.data.errorMessage;
             }
         );
     }
@@ -40,7 +40,7 @@ musicPlayerAppControllers.controller('SignupController', ['$scope', '$location',
     $scope.email = '';
     $scope.password = '';
     $scope.errorMessage= '';
-    
+
     if(userService.checkIfLoggedIn())
         $location.path('/');
 }]);

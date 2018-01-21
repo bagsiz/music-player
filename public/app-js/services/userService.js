@@ -21,8 +21,7 @@ musicPlayerAppServices.factory('userService', ['$http', 'localStorageService', f
                 password: password
             }).
         then(function(response) {
-
-            localStorageService.set('token', response.data.token);
+            localStorageService.set('token', response.data.access_token);
             onSuccess(response);
 
         }, function(response) {
