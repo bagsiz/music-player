@@ -1,9 +1,10 @@
 /**
  * Created by murat on 20/01/2018.
  */
-var musicPlayerAppControllers = angular.module('musicPlayerAppControllers', []);
+var musicPlayerAppControllers = angular.module('musicPlayerAppControllers', ['ngAudio']);
 
-musicPlayerAppControllers.controller('LoginController', ['$scope', '$http', '$location', 'userService', function ($scope, $http, $location, userService) {
+musicPlayerAppControllers.controller('LoginController', ['$scope', '$http', '$location', 'userService',
+    function ($scope, $http, $location, userService) {
     $scope.login = function() {
         userService.login(
             $scope.email, $scope.password,
@@ -24,7 +25,8 @@ musicPlayerAppControllers.controller('LoginController', ['$scope', '$http', '$lo
         $location.path('/');
 }]);
 
-musicPlayerAppControllers.controller('SignupController', ['$scope', '$location', 'userService', function ($scope, $location, userService) {
+musicPlayerAppControllers.controller('SignupController', ['$scope', '$location', 'userService',
+    function ($scope, $location, userService) {
     $scope.signup = function() {
         userService.signup(
             $scope.name, $scope.email, $scope.password,
@@ -45,7 +47,34 @@ musicPlayerAppControllers.controller('SignupController', ['$scope', '$location',
         $location.path('/');
 }]);
 
-musicPlayerAppControllers.controller('MainController', ['$scope', '$location', 'userService', 'musicService', function ($scope, $location, userService, musicService) {
+musicPlayerAppControllers.controller('CategoryController', ['$scope', '$location', 'userService', 'musicService',
+    '$routeParams', '$parse', 'ngAudio',
+    function ($scope, $location, userService, musicService, $routeParams, $parse, ngAudio) {
+
+        $scope.logout = function(){
+            userService.logout();
+            $location.path('/login');
+        }
+
+        if(!userService.checkIfLoggedIn())
+            $location.path('/');
+
+        $scope.getCategory = function () {
+            musicService.getCategory($routeParams.categorySlug,function (response) {
+                $scope.category = response;
+
+                for(i in $scope.category.songs) {
+                    $scope.category.songs[i].audio = ngAudio.load('categories/'+$scope.category.songs[i].slug)
+                }
+            })
+        }
+
+        $scope.getCategory();
+
+}]);
+
+musicPlayerAppControllers.controller('MainController', ['$scope', '$location', 'userService', 'musicService',
+    function ($scope, $location, userService, musicService) {
 
     if(!userService.checkIfLoggedIn()) {
         $location.path('/login');
@@ -67,7 +96,13 @@ musicPlayerAppControllers.controller('MainController', ['$scope', '$location', '
 
         }
 
+        $scope.go = function ( path ) {
+            $location.path( path );
+        };
+
         $scope.categories = [];
+
+        $scope.favoriteView = true;
 
         $scope.init();
     }

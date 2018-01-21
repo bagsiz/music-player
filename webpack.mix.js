@@ -24,4 +24,5 @@ mix.js('node_modules/angular/angular.min.js', 'node_modules/angular.min.js')
     .js('node_modules/angular-local-storage/dist/angular-local-storage.min.js', 'node_modules/angular-local-storage.min.js')
     .js('node_modules/restangular/dist/restangular.min.js', 'node_modules/restangular.min.js')
     .js('node_modules/jquery/dist/jquery.min.js', 'node_modules/jquery.min.js')
-    .js('node_modules/bootstrap/dist/js/bootstrap.min.js', 'node_modules/bootstrap.min.js');
+    .js('node_modules/bootstrap/dist/js/bootstrap.min.js', 'node_modules/bootstrap.min.js')
+    .js('node_modules/angular-audio/index.js', 'node_modules/angular.audio.js');

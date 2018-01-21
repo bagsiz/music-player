@@ -14,6 +14,7 @@
     <script src="node_modules/angular-route.min.js"></script>
     <script src="node_modules/angular-local-storage.min.js"></script>
     <script src="node_modules/restangular.min.js"></script>
+    <script src="node_modules/angular.audio.js"></script>
 
     <script src="app-js/app.js"></script>
     <script src="app-js/controllers.js"></script>
@@ -28,7 +29,27 @@
         .container {
             max-width:640px;
         }
-
+        ul.categories {
+            width: 100%;
+            float:left;
+            padding:0!important;
+            list-style: none;
+        }
+        ul.categories > li {
+            width:100%;
+            float:left;
+            margin-bottom:20px;
+            border: 1px solid #e1e1e3;
+            padding:20px;
+            min-height: 150px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            color: #fff;
+        }
+        ul.categories.songs > li {
+            color: #000;
+        }
     </style>
 </head>
 

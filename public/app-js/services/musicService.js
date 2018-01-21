@@ -24,6 +24,16 @@ musicPlayerAppServices.factory('musicService', ['Restangular', 'userService', fu
             onError(response);
         });
     }
+    
+    function getCategory(categorySlug, onSuccess, onError) {
+        Restangular.one('api/category/'+categorySlug).get().then(function (response) {
+            onSuccess(response);
+
+        }, function(response){
+
+            onError(response);
+        })
+    }
 
     function getById(songId, onSuccess, onError){
 
@@ -58,6 +68,7 @@ musicPlayerAppServices.factory('musicService', ['Restangular', 'userService', fu
     return {
         getAll: getAll,
         getCategories: getCategories,
+        getCategory:getCategory,
         getById: getById,
         toggleFavorites: toggleFavorites,
     }

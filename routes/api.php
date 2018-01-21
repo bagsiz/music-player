@@ -17,6 +17,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::middleware('auth:api')->get('/categories', function (Request $request) {
-    return $request->user();
+    return \App\Categories::orderBy('id', 'DESC')->get();
+});
+Route::middleware('auth:api')->get('/category/{slug}', function (Request $request, $slug) {
+    return \App\Categories::where('slug', $slug)->first();
 });
 
