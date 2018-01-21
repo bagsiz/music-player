@@ -5,7 +5,7 @@ musicPlayerAppServices.factory('userService', ['$http', 'localStorageService', f
 
     function checkIfLoggedIn() {
 
-        if(localStorageService.get('token'))
+        if(localStorageService.get('musicPlayerToken'))
             return true;
         else
             return false;
@@ -21,7 +21,7 @@ musicPlayerAppServices.factory('userService', ['$http', 'localStorageService', f
                 password: password
             }).
         then(function(response) {
-            localStorageService.set('token', response.data.access_token);
+            localStorageService.set('musicPlayerToken', response.data.access_token);
             onSuccess(response);
 
         }, function(response) {
@@ -41,7 +41,7 @@ musicPlayerAppServices.factory('userService', ['$http', 'localStorageService', f
             }).
         then(function(response) {
 
-            localStorageService.set('token', response.data.token);
+            localStorageService.set('musicPlayerToken', response.data.access_token);
             onSuccess(response);
 
         }, function(response) {
@@ -54,12 +54,12 @@ musicPlayerAppServices.factory('userService', ['$http', 'localStorageService', f
 
     function logout(){
 
-        localStorageService.remove('token');
+        localStorageService.remove('musicPlayerToken');
 
     }
 
     function getCurrentToken(){
-        return localStorageService.get('token');
+        return localStorageService.get('musicPlayerToken');
     }
 
     return {

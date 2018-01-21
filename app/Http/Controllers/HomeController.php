@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -62,5 +63,42 @@ class HomeController extends Controller
             ],
         ]);
         return json_decode((string) $response->getBody(), true);
+    }
+
+    public function login(Request $request){
+        $email = $request->input('email');
+        $password = $request->input('password');
+        if(!$email) {
+            $msg = ['errorMessage' => 'Email field can not be empty!', 'statusCode' => 400];
+            return response($msg, 400);
+        } else {
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $msg = ['errorMessage' => 'Email address is not valid!', 'statusCode' => 400];
+                return response($msg, 400);
+            }
+        }
+        if(!$password) {
+            $msg = ['errorMessage' => 'Password field can not be empty!', 'statusCode' => 400];
+            return response($msg, 400);
+        }
+
+        if (!Auth::attempt(['email' => $email, 'password' => $password])) {
+            $msg = ['errorMessage' => 'Invalid credentials. Try again', 'statusCode' => 500];
+            return response($msg, 500);
+        }
+
+        $http = new Client();
+        $response = $http->post('172.20.0.5/oauth/token', [
+            'form_params' => [
+                'grant_type' => 'password',
+                'client_id' => env('PASSPORT_ID'),
+                'client_secret' => env('PASSPORT_SECRET'),
+                'username' => $email,
+                'password' => $password,
+                'scope' => '',
+            ],
+        ]);
+        return json_decode((string) $response->getBody(), true);
+
     }
 }

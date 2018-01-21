@@ -18,3 +18,4 @@ Route::get('/', function () {
 });
 
 Route::post('/auth/signup', 'HomeController@signup');
+Route::post('/auth/login', 'HomeController@login');

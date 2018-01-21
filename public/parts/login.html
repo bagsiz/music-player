@@ -9,7 +9,7 @@
         <hr>
 
         <p><button type="button" class="btn btn-success form-control" ng-click="login()">Login</button></p>
-
+        <div class="alert alert-danger" ng-if="errorMessage">{{errorMessage}}</div>
         <hr>
 
         <p><a href="#!/signup">First time here? <b>Sign up!</b></a></p>
