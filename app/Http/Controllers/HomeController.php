@@ -69,18 +69,7 @@ class HomeController extends Controller
         }
 
         //Response with token object
-        $http = new Client();
-        $response = $http->post('172.20.0.5/oauth/token', [
-            'form_params' => [
-                'grant_type' => 'password',
-                'client_id' => $this->key,
-                'client_secret' => $this->secret,
-                'username' => $email,
-                'password' => $password,
-                'scope' => '',
-            ],
-        ]);
-        return json_decode((string) $response->getBody(), true);
+        return $this->getAccessToken($user);
     }
 
     public function login(Request $request){
@@ -106,21 +95,14 @@ class HomeController extends Controller
         if (!Auth::attempt(['email' => $email, 'password' => $password])) {
             $msg = ['errorMessage' => 'Hatalı bilgiler. Tekrar deneyin.', 'errorCode' => 500];
             return response($msg, 500);
+        } else {
+            //Response with token object if authenticated
+            return $this->getAccessToken(Auth::user());
         }
+    }
 
-        //Response with token object if authenticated
-        $http = new Client();
-        $response = $http->post('172.20.0.5/oauth/token', [
-            'form_params' => [
-                'grant_type' => 'password',
-                'client_id' => $this->key,
-                'client_secret' => $this->secret,
-                'username' => $email,
-                'password' => $password,
-                'scope' => '',
-            ],
-        ]);
-        return json_decode((string) $response->getBody(), true);
-
+    // This method creates accessToken by user
+    private function getAccessToken($user) {
+        return $user->createToken('Token')->accessToken;
     }
 }
