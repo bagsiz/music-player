@@ -1,3 +1,5 @@
+[![Quality Score](https://img.shields.io/scrutinizer/quality/g/bagsiz/music-player/master?style=flat-square)](https://scrutinizer-ci.com/g/bagsiz/music-player)
+
 ## Intro
 
 This application is developed for playing comforting sound from different categories.
