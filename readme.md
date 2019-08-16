@@ -1,3 +1,4 @@
+[![Latest Version](https://img.shields.io/github/release/bagsiz/music-player?style=flat-square)](https://github.com/bagsiz/music-player/releases)
 [![Quality Score](https://img.shields.io/scrutinizer/quality/g/bagsiz/music-player/master?style=flat-square)](https://scrutinizer-ci.com/g/bagsiz/music-player)
 
 ## Intro
